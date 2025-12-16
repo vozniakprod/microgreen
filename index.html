@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>1WIN Official Bonus</title>
+    <meta name="description" content="1WIN Bonus Spin">
+    <style>
+        :root {
+            --bg-dark: #0f162b;
+            --bg-radial: radial-gradient(circle at center, #1b2649 0%, #0f162b 100%);
+            --accent-gold: #fbbf24;
+            --cta-green: #22c55e;
+            --cta-gradient: linear-gradient(180deg, #4ade80 0%, #16a34a 100%);
+            --text-white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: var(--bg-dark);
+            background-image: var(--bg-radial);
+            color: var(--text-white);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* BACKGROUND EFFECTS */
+        .bg-glow {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120vw;
+            height: 120vw;
+            background: radial-gradient(circle, rgba(9, 79, 158, 0.3) 0%, rgba(0,0,0,0) 70%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* HEADER */
+        header {
+            width: 100%;
+            padding: 10px 20px;
+            background: rgba(15, 22, 43, 0.95);
+            display: flex;
+            justify-content: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* New PNG Logo Styling */
+        .brand-logo-img {
+            max-height: 50px;
+            width: auto;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
+        }
+
+        /* HERO TEXT */
+        .hero {
+            text-align: center;
+            padding: 20px 15px 10px;
+            max-width: 500px;
+            z-index: 2;
+        }
+
+        h1 {
+            font-size: 34px;
+            font-weight: 800;
+            margin-bottom: 5px;
+            background: linear-gradient(180deg, #fff 20%, #bfdbfe 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.8));
+            line-height: 1.1;
+        }
+
+        .subtitle {
+            font-size: 15px;
+            color: #60a5fa;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        /* WHEEL CONTAINER */
+        .wheel-container {
+            position: relative;
+            width: 350px;
+            height: 350px;
+            margin: 10px auto 20px;
+            z-index: 5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* The Outer Rim with Lamps */
+        .wheel-rim {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2d3748, #000);
+            box-shadow: 
+                0 15px 35px rgba(0,0,0,0.6),
+                inset 0 0 0 2px #4a5568,
+                inset 0 0 20px rgba(0,0,0,0.8);
+            z-index: 1;
+        }
+
+        /* Animated Lamps SVG */
+        .lamps-ring {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 2;
+            animation: rotate-lamps 20s linear infinite;
+        }
+        @keyframes rotate-lamps {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* The actual spinning wheel part */
+        .wheel-spinner {
+            position: absolute;
+            top: 18px; left: 18px; right: 18px; bottom: 18px;
+            z-index: 3;
+            /* Using translateZ(0) to force GPU acceleration, rotate(0deg) as initial state */
+            transform: rotate(0deg) translateZ(0);
+            transition: transform 3.8s cubic-bezier(0.15, 0.95, 0.30, 1.0); /* Adjusted curve for fast start */
+            border-radius: 50%;
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+            will-change: transform;
+        }
+
+        /* Shine overlay */
+        .wheel-shine {
+            position: absolute;
+            top: 18px; left: 18px; right: 18px; bottom: 18px;
+            border-radius: 50%;
+            z-index: 10;
+            background: linear-gradient(135deg, rgba(255,255,255,0.25) 0%, transparent 40%, transparent 60%, rgba(255,255,255,0.1) 100%);
+            pointer-events: none;
+        }
+
+        /* SVG Styles */
+        svg { width: 100%; height: 100%; display: block; }
+        
+        .slice-path { stroke: #1e293b; stroke-width: 2px; }
+        .text-main { font-weight: 800; font-size: 24px; fill: #fff; text-shadow: 1px 1px 0 rgba(0,0,0,0.5); }
+        .text-sub { font-weight: 700; font-size: 14px; fill: #e2e8f0; }
+        
+        /* Specific Slice Colors - High Quality Gradients defined in SVG defs */
+        .win-slice-bg { fill: url(#gradGold); }
+        .lose-slice-bg { fill: url(#gradBlueDark); }
+        .reg-slice-bg { fill: url(#gradBlueLight); }
+
+        .win-pulse { animation: slice-flash 0.8s ease-in-out infinite alternate; }
+        
+        @keyframes slice-flash {
+            from { filter: brightness(1); }
+            to { filter: brightness(1.3); }
+        }
+
+        /* MARKER */
+        .marker {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 60px;
+            z-index: 20;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.7));
+        }
+        .marker-svg {
+            width: 100%; height: 100%;
+        }
+
+        /* CENTER CAP */
+        .center-cap {
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 15;
+            background: radial-gradient(circle at 30% 30%, #fff, #9ca3af);
+            border-radius: 50%;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.6);
+            border: 4px solid #0f162b;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .center-star {
+            width: 40px; height: 40px;
+            background: var(--accent-gold);
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+            background: linear-gradient(45deg, #ffd700, #f59e0b);
+        }
+
+        /* BUTTON */
+        .btn-container {
+            width: 100%;
+            padding: 0 20px;
+            display: flex;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        .spin-btn {
+            background: var(--cta-gradient);
+            border: 2px solid #86efac;
+            border-radius: 16px;
+            padding: 20px 80px;
+            font-size: 24px;
+            font-weight: 900;
+            color: white;
+            text-transform: uppercase;
+            box-shadow: 
+                0 6px 0 #15803d, 
+                0 0 20px rgba(34, 197, 94, 0.4);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+            transition: transform 0.1s;
+            animation: btn-pulse 2s infinite;
+        }
+
+        .spin-btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0 #15803d;
+        }
+
+        @keyframes btn-pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); box-shadow: 0 6px 0 #15803d, 0 0 35px rgba(34, 197, 94, 0.6); }
+            100% { transform: scale(1); }
+        }
+
+        /* MODAL & CONFETTI */
+        .overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 100;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        #confetti-canvas {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 101;
+        }
+
+        .modal {
+            background: linear-gradient(160deg, #1e293b, #0f162b);
+            border: 2px solid var(--accent-gold);
+            border-radius: 20px;
+            padding: 25px 20px;
+            width: 100%;
+            max-width: 360px;
+            text-align: center;
+            position: relative;
+            z-index: 102;
+            box-shadow: 0 0 60px rgba(251, 191, 36, 0.2);
+            transform: scale(0.8);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            /* FOMO Pulse Effect */
+            animation: modal-pulse 2s infinite;
+        }
+        
+        @keyframes modal-pulse {
+            0% { box-shadow: 0 0 0 0 rgba(251, 191, 36, 0.4); border-color: #fbbf24; }
+            50% { box-shadow: 0 0 30px 10px rgba(251, 191, 36, 0); border-color: #fff; }
+            100% { box-shadow: 0 0 0 0 rgba(251, 191, 36, 0); border-color: #fbbf24; }
+        }
+
+        .fomo-alert {
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid #ef4444;
+            color: #fca5a5;
+            padding: 8px;
+            border-radius: 8px;
+            font-size: 13px;
+            margin-bottom: 15px;
+            display: inline-block;
+            font-weight: bold;
+            animation: text-flash 1s infinite alternate;
+        }
+
+        @keyframes text-flash {
+            from { opacity: 0.8; }
+            to { opacity: 1; text-shadow: 0 0 10px red; }
+        }
+        
+        .timer-val {
+            color: #fff;
+            font-family: monospace;
+            font-size: 16px;
+        }
+
+        .win-title {
+            font-size: 32px;
+            color: var(--accent-gold);
+            font-weight: 800;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .win-box {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 15px;
+            margin: 15px 0 20px;
+        }
+
+        .win-main {
+            font-size: 40px;
+            font-weight: 900;
+            color: #fff;
+            line-height: 1;
+            margin-bottom: 5px;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+        }
+        .win-sub {
+            color: var(--cta-green);
+            font-size: 24px;
+            font-weight: 800;
+        }
+
+        .cta-btn {
+            display: block;
+            width: 100%;
+            background: var(--cta-gradient);
+            color: white;
+            text-decoration: none;
+            padding: 18px;
+            border-radius: 12px;
+            font-size: 20px;
+            font-weight: 800;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.5);
+            animation: btn-pulse 2s infinite;
+        }
+
+        /* TRUST BADGES - IMAGES */
+        .trust-row {
+            margin-top: 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            opacity: 1;
+        }
+        .badge {
+            background: white;
+            border-radius: 6px;
+            height: 32px; /* Slightly taller for images */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4px 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .badge img {
+            height: 100%;
+            width: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="bg-glow"></div>
+
+    <header>
+        <div class="logo">
+            <img src="https://1win-apk.com/wp-content/uploads/2024/11/1win-apk-casino.webp" class="brand-logo-img">
+        </div>
+    </header>
+
+    <div class="hero">
+        <h1>अपनी किस्मत आजमाएं!</h1>
+        <div class="subtitle">1WIN का आधिकारिक बोनस</div>
+    </div>
+
+    <!-- MAIN WHEEL AREA -->
+    <div class="wheel-container">
+        
+        <!-- Animated Rim Lights -->
+        <div class="wheel-rim">
+            <svg class="lamps-ring" viewBox="0 0 350 350">
+                <!-- Generate dots via JS or just place manually for control? SVG Dashed line is easier -->
+                <circle cx="175" cy="175" r="165" fill="none" stroke="#fbbf24" stroke-width="8" stroke-dasharray="0 25" stroke-linecap="round" opacity="0.8" />
+                <circle cx="175" cy="175" r="165" fill="none" stroke="#fff" stroke-width="4" stroke-dasharray="0 25" stroke-linecap="round" opacity="0.4" />
+            </svg>
+        </div>
+
+        <!-- The Marker -->
+        <div class="marker">
+            <svg class="marker-svg" viewBox="0 0 50 60">
+                <defs>
+                    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+                        <feDropShadow dx="0" dy="2" stdDeviation="2" flood-opacity="0.5"/>
+                    </filter>
+                    <linearGradient id="gradMarker" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#ef4444"/>
+                        <stop offset="100%" stop-color="#991b1b"/>
+                    </linearGradient>
+                </defs>
+                <path d="M25 60 L5 10 Q0 0 10 0 L40 0 Q50 0 45 10 Z" fill="url(#gradMarker)" filter="url(#shadow)" />
+                <circle cx="25" cy="10" r="4" fill="#7f1d1d"/>
+            </svg>
+        </div>
+
+        <!-- The Shine Overlay -->
+        <div class="wheel-shine"></div>
+
+        <!-- Rotating Wheel SVG -->
+        <div class="wheel-spinner" id="wheel">
+            <svg viewBox="0 0 500 500">
+                <defs>
+                    <!-- Enhanced Gradients for Segments -->
+                    <linearGradient id="gradGold" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#f59e0b"/>
+                        <stop offset="40%" stop-color="#fbbf24"/>
+                        <stop offset="100%" stop-color="#d97706"/>
+                    </linearGradient>
+                    <radialGradient id="gradBlueDark" cx="50%" cy="50%" r="70%">
+                        <stop offset="0%" stop-color="#1e3a8a"/>
+                        <stop offset="100%" stop-color="#172554"/>
+                    </radialGradient>
+                    <radialGradient id="gradBlueLight" cx="50%" cy="50%" r="70%">
+                        <stop offset="0%" stop-color="#3b82f6"/>
+                        <stop offset="100%" stop-color="#1d4ed8"/>
+                    </radialGradient>
+                </defs>
+
+                <!-- Segments Group. 6 Segments. 60 degrees each. -->
+                <!-- Center is 250,250. Radius 250. -->
+                <g transform="translate(250, 250)">
+                    
+                    <!-- Slice 1: -30 to 30 (Top). TRY AGAIN -->
+                    <g transform="rotate(0)">
+                        <path d="M0 0 L-125 -216.5 A 250 250 0 0 1 125 -216.5 Z" class="slice-path reg-slice-bg"/>
+                        <text x="0" y="-160" text-anchor="middle" class="text-main" transform="rotate(0, 0, -160)">TRY</text>
+                        <text x="0" y="-135" text-anchor="middle" class="text-sub" transform="rotate(0, 0, -135)">AGAIN</text>
+                    </g>
+                    
+                    <!-- Slice 2: 60 deg. 100% BONUS -->
+                    <g transform="rotate(60)">
+                        <path d="M0 0 L-125 -216.5 A 250 250 0 0 1 125 -216.5 Z" class="slice-path lose-slice-bg"/>
+                        <text x="0" y="-160" text-anchor="middle" class="text-main">100%</text>
+                        <text x="0" y="-135" text-anchor="middle" class="text-sub">BONUS</text>
+                    </g>
+
+                    <!-- Slice 3: 120 deg. 50 FS -->
+                    <g transform="rotate(120)">
+                        <path d="M0 0 L-125 -216.5 A 250 250 0 0 1 125 -216.5 Z" class="slice-path reg-slice-bg"/>
+                        <text x="0" y="-150" text-anchor="middle" class="text-main">50 FS</text>
+                    </g>
+
+                    <!-- Slice 4: 180 deg (Bottom). 500% BONUS (WINNER) -->
+                    <!-- We need to give this an ID to animate it later -->
+                    <g transform="rotate(180)" id="win-slice">
+                        <path d="M0 0 L-125 -216.5 A 250 250 0 0 1 125 -216.5 Z" class="slice-path win-slice-bg"/>
+                        <text x="0" y="-165" text-anchor="middle" fill="#501a05" font-weight="900" font-size="28" style="text-shadow:none;">500%</text>
+                        <text x="0" y="-135" text-anchor="middle" fill="#501a05" font-weight="800" font-size="18" style="text-shadow:none;">BONUS</text>
+                    </g>
+
+                    <!-- Slice 5: 240 deg. 200% BONUS -->
+                    <g transform="rotate(240)">
+                        <path d="M0 0 L-125 -216.5 A 250 250 0 0 1 125 -216.5 Z" class="slice-path lose-slice-bg"/>
+                        <text x="0" y="-160" text-anchor="middle" class="text-main">200%</text>
+                        <text x="0" y="-135" text-anchor="middle" class="text-sub">BONUS</text>
+                    </g>
+
+                    <!-- Slice 6: 300 deg. LOSE -->
+                    <g transform="rotate(300)">
+                        <path d="M0 0 L-125 -216.5 A 250 250 0 0 1 125 -216.5 Z" class="slice-path reg-slice-bg"/>
+                        <text x="0" y="-150" text-anchor="middle" class="text-main">LOSE</text>
+                    </g>
+
+                    <!-- Divider Dots (Pegs) at segment intersections -->
+                    <circle cx="0" cy="-225" r="4" fill="#fff" transform="rotate(30)"/>
+                    <circle cx="0" cy="-225" r="4" fill="#fff" transform="rotate(90)"/>
+                    <circle cx="0" cy="-225" r="4" fill="#fff" transform="rotate(150)"/>
+                    <circle cx="0" cy="-225" r="4" fill="#fff" transform="rotate(210)"/>
+                    <circle cx="0" cy="-225" r="4" fill="#fff" transform="rotate(270)"/>
+                    <circle cx="0" cy="-225" r="4" fill="#fff" transform="rotate(330)"/>
+
+                </g>
+            </svg>
+        </div>
+
+        <!-- Center Cap -->
+        <div class="center-cap">
+            <div class="center-star"></div>
+        </div>
+    </div>
+
+    <div class="btn-container">
+        <button class="spin-btn" id="spinBtn">SPIN NOW</button>
+    </div>
+
+    <!-- MODAL -->
+    <div class="overlay" id="overlay">
+        <canvas id="confetti-canvas"></canvas>
+        <div class="modal" id="modal-box">
+            
+            <div class="fomo-alert">
+                🔥 Offer expires in: <span class="timer-val" id="countdown">05:00</span>
+            </div>
+
+            <div class="win-title">बधाई हो!</div>
+            <p style="color: #94a3b8; font-size: 14px;">आपने जीता है:</p>
+            
+            <div class="win-box">
+                <div class="win-main">500% BONUS</div>
+                <div class="win-sub">+ 70 FS</div>
+            </div>
+
+            <p style="color: #cbd5e1; margin-bottom: 20px; font-size: 15px;">अभी जमा करें और जीतें</p>
+            
+            <a href="#" class="cta-btn">अभी बोनस लें</a>
+
+            <div class="trust-row">
+                <!-- PhonePe Logo -->
+                <div class="badge">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/71/PhonePe_Logo.svg" alt="PhonePe">
+                </div>
+                <!-- Paytm Logo -->
+                <div class="badge">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Paytm_Logo_%28standalone%29.svg" alt="Paytm">
+                </div>
+                <!-- UPI Logo -->
+                <div class="badge">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/UPI-Logo-vector.svg" alt="UPI">
+                </div>
+                <!-- Google Pay Logo -->
+                <div class="badge">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Google_Pay_Logo.svg" alt="Google Pay">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const spinBtn = document.getElementById('spinBtn');
+            const wheel = document.getElementById('wheel');
+            const overlay = document.getElementById('overlay');
+            const modalBox = document.getElementById('modal-box');
+            const winSlice = document.getElementById('win-slice');
+            let hasSpun = false;
+
+            // --- CONFETTI ---
+            const canvas = document.getElementById('confetti-canvas');
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+            
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+
+            function createConfetti() {
+                const colors = ['#fbbf24', '#ef4444', '#22c55e', '#ffffff', '#3b82f6'];
+                for(let i=0; i<120; i++) {
+                    particles.push({
+                        x: Math.random() * canvas.width,
+                        y: Math.random() * canvas.height - canvas.height,
+                        w: Math.random() * 8 + 4,
+                        h: Math.random() * 8 + 4,
+                        color: colors[Math.floor(Math.random() * colors.length)],
+                        speedY: Math.random() * 3 + 3,
+                        speedX: Math.random() * 4 - 2,
+                        rotation: Math.random() * 360,
+                        rotationSpeed: Math.random() * 10 - 5
+                    });
+                }
+            }
+
+            function drawConfetti() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach((p) => {
+                    p.y += p.speedY;
+                    p.x += p.speedX;
+                    p.rotation += p.rotationSpeed;
+                    
+                    ctx.save();
+                    ctx.translate(p.x, p.y);
+                    ctx.rotate(p.rotation * Math.PI / 180);
+                    ctx.fillStyle = p.color;
+                    ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
+                    ctx.restore();
+
+                    if (p.y > canvas.height) {
+                        p.y = -20;
+                        p.x = Math.random() * canvas.width;
+                    }
+                });
+                requestAnimationFrame(drawConfetti);
+            }
+
+            // --- TIMER LOGIC ---
+            function startTimer(duration, display) {
+                let timer = duration, minutes, seconds;
+                setInterval(function () {
+                    minutes = parseInt(timer / 60, 10);
+                    seconds = parseInt(timer % 60, 10);
+
+                    minutes = minutes < 10 ? "0" + minutes : minutes;
+                    seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                    display.textContent = minutes + ":" + seconds;
+
+                    if (--timer < 0) {
+                        timer = 0; // Stop at 0
+                    }
+                }, 1000);
+            }
+
+            // --- SPIN LOGIC ---
+            spinBtn.addEventListener('click', () => {
+                if (hasSpun) return;
+                hasSpun = true;
+
+                // Button UI
+                spinBtn.style.animation = 'none';
+                spinBtn.style.filter = 'grayscale(0.5)';
+                spinBtn.innerText = 'WAIT...';
+
+                // ROTATION CALCULATION:
+                // We want "500% BONUS" (Slice 4) to land at TOP (0 deg).
+                // In the SVG design, Slice 4 is at 180 deg (Bottom).
+                // To bring 180 to 0 (Top), we need to rotate the container by +180 deg.
+                // 
+                // Math:
+                // 15 full rotations = 15 * 360 = 5400 deg.
+                // Target Offset = 180 deg.
+                // Total = 5580 deg.
+                
+                const baseSpins = 360 * 15; // 15 full spins for speed
+                const targetOffset = 180;
+                
+                // Add randomness: +/- 12 deg (safe zone inside segment)
+                const randomOffset = Math.floor(Math.random() * 24) - 12;
+                const finalRotate = baseSpins + targetOffset + randomOffset;
+
+                // Apply transform with translateZ to match CSS and ensure animation triggers
+                wheel.style.transform = `rotate(${finalRotate}deg) translateZ(0)`;
+
+                // End of spin
+                setTimeout(() => {
+                    // Start winning pulse animation on the slice
+                    winSlice.querySelector('path').style.filter = 'brightness(1.3)';
+                    winSlice.classList.add('win-pulse');
+                    
+                    // Show modal
+                    overlay.style.display = 'flex';
+                    setTimeout(() => { 
+                        overlay.style.opacity = '1'; 
+                        modalBox.style.transform = 'scale(1)';
+                        
+                        // Start FOMO Timer (5 minutes)
+                        const fiveMinutes = 60 * 5;
+                        const display = document.querySelector('#countdown');
+                        startTimer(fiveMinutes, display);
+                    }, 50);
+
+                    // Confetti
+                    createConfetti();
+                    drawConfetti();
+
+                }, 3850); // Matches CSS transition time + small buffer
+            });
+        });
+    </script>
+</body>
+</html>
+
+
